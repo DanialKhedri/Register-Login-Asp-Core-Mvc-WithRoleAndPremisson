@@ -18,14 +18,20 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\SitePanel\Data\" />
     <Folder Include="Areas\SitePanel\Models\" />
+    <Folder Include="Areas\sss\Controllers\" />
+    <Folder Include="Areas\sss\Data\" />
+    <Folder Include="Areas\sss\Models\" />
+    <Folder Include="Areas\sss\Views\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 

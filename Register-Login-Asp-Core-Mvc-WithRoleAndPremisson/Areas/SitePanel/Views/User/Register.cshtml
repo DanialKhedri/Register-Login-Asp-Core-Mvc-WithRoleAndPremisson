@@ -1,4 +1,5 @@
-﻿@*
+﻿@using Application.DTOs
+@model UserDTO;
 
 @{
     Layout = "_Layout";
@@ -90,15 +91,9 @@
                 <input type="text" asp-for="UserName" placeholder="Please Enter UserName">
             </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" asp-for="Email" placeholder="Please Enter Email">
-            </div>
+          
 
-            <div class="form-group">
-                <label for="confirm-password">Phone Number </label>
-                <input type="password" asp-for="Phone" placeholder="Please Enter Your Phone Number">
-            </div>
+        
 
             <div class="form-group">
                 <label for="password">Password</label>
@@ -123,4 +118,3 @@
     </div>
 </body>
 </html>
-*@
