@@ -18,7 +18,7 @@ namespace Infrastructure.Data
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Danial\Documents\PremissonDB.mdf;Integrated Security=True;Connect Timeout=30;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Danial\Documents\PDB.mdf;Integrated Security=True;Connect Timeout=30;TrustServerCertificate=True");
         }
 
         #endregion
