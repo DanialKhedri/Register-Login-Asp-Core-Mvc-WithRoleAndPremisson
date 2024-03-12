@@ -3,13 +3,12 @@ using Application.IService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
+using Microsoft.AspNetCore.Authorization;
 namespace LogInAspcoreMVC.Areas.SitePanel.Controllers
 {
     public class UserController : Controller
     {
 
-        //Ctor
         #region Ctor
         private readonly IUserService _IUserService;
 
@@ -21,7 +20,7 @@ namespace LogInAspcoreMVC.Areas.SitePanel.Controllers
 
         #endregion
 
-        //Index action
+
         #region Index
         [Area("SitePanel")]
         [HttpGet]
@@ -30,8 +29,8 @@ namespace LogInAspcoreMVC.Areas.SitePanel.Controllers
             return View();
         }
         #endregion
-        
-        //Register Actions
+
+
         #region Register
 
         [Area("SitePanel")]
@@ -61,14 +60,57 @@ namespace LogInAspcoreMVC.Areas.SitePanel.Controllers
         #endregion
 
 
-        
-        //LogIn Actions
+
+        #region LogIn
+        [Area("SitePanel")]
+        [HttpGet]
+        public async Task<IActionResult> LogIn()
+        {
+
+            return View();
+        }
+
+        [Area("SitePanel")]
+        [HttpPost]
+        public async Task<IActionResult> logIn(UserDTO userDTO)
+        {
+
+            var Issucces = await _IUserService.LogIn(userDTO);
+
+            if (Issucces)
+                return RedirectToAction(nameof(Index));
+
+
+            TempData["Message"] = "UserName Or Password Is Wrong";
+            return View();
+
+        }
 
 
 
+        #endregion
 
-        //LogOut Action
 
 
+        #region LogOut
+
+        [Area("SitePanel")]
+        public async Task<IActionResult> LogOut()
+        {
+
+            await HttpContext.SignOutAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        #endregion
+
+        [Area("SitePanel")]
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Shop()
+        {
+            return View();
+        }
     }
 }

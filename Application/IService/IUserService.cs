@@ -13,6 +13,7 @@ namespace Application.IService
 
         public Task<bool> AddUser(UserDTO userDTO);
 
+        public Task<bool> LogIn(UserDTO userDTO);
 
     }
 }

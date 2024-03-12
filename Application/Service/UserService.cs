@@ -1,6 +1,7 @@
 ﻿
 using Application.DTOs;
 using Application.IService;
+using Application.Security;
 using Domain.Entities.User;
 using Domain.IRepository;
 using System;
@@ -30,7 +31,7 @@ namespace Application.Service
         #region AddUser
         public async Task<bool> AddUser(UserDTO userDTO)
         {
-        
+
 
             if (userDTO.Password == userDTO.RePassword)
             {
@@ -38,7 +39,7 @@ namespace Application.Service
                 User user = new User
                 {
                     UserName = userDTO.UserName,
-                    Password = userDTO.Password,
+                    Password = PasswordHasher.EncodePasswordMd5(userDTO.Password) ,
                 };
 
 
@@ -53,13 +54,37 @@ namespace Application.Service
                 return false;
             }
 
-        
+
 
         }
 
         #endregion
 
 
+        //LogIn Service
+
+        public async Task<bool> LogIn(UserDTO userDTO)
+        {
+            //object mapping
+
+            User user = new User
+            {
+                UserName = userDTO.UserName,
+                Password = PasswordHasher.EncodePasswordMd5(userDTO.Password) ,           
+            };
+
+
+            //Send object to repository and recive result
+
+           bool IsSucces = await  _IUserRepository.LogInUser(user);
+
+            if (IsSucces)
+                return true;
+            else
+                return false;
+        
+
+        }
 
     }
 }

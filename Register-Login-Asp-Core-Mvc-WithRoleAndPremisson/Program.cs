@@ -3,6 +3,7 @@ using Application.Service;
 using Domain.IRepository;
 using Infrastructure.Data;
 using Infrastructure.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 #region Services
@@ -20,6 +21,31 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+//HttpAccessor
+builder.Services.AddHttpContextAccessor();
+
+//Authentication
+#region Authentication
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+// Add Cookie settings
+.AddCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Logout";
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+});
+
+#endregion
+
 
 
 var app = builder.Build();
@@ -40,7 +66,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.UseEndpoints(endpoints =>
 {

@@ -1,49 +1,93 @@
 ﻿using Domain.Entities.User;
 using Domain.IRepository;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Repository
+namespace Infrastructure.Repository;
+
+public class UserRepository : IUserRepository
 {
-    public class UserRepository : IUserRepository
+    #region Ctor
+    private readonly DataContext _Context;
+    private readonly IHttpContextAccessor _IhttpContextAccessor;
+    public UserRepository(DataContext dataContext , IHttpContextAccessor httpContextAccessor)
     {
-        //Ctor
-        #region Ctor
-        private readonly DataContext _Context;
+        _IhttpContextAccessor = httpContextAccessor;
+        _Context = dataContext;
+    }
 
-        public UserRepository(DataContext dataContext)
+    #endregion
+
+
+    #region AddUser
+    public async Task<bool> AddUserToDataBase(User user)
+    {
+
+        //Serch For Usename in Database
+        var exist = _Context.Users.Any(p => p.UserName == user.UserName);
+
+        if (!exist)
         {
-            _Context = dataContext;
+            _Context.Users.Add(user);
+            _Context.SaveChanges();
+            return true;
         }
 
-        #endregion
+        return false;
+
+    }
 
 
-        //AddUserRepository
-        #region AddUser
-        public async Task<bool> AddUserToDataBase(User user)
+
+    #endregion
+
+
+
+    #region LogIn
+    public async Task<bool> LogInUser(User User)
+    {
+
+        var user = _Context.Users.SingleOrDefault(p => p.UserName == User.UserName && p.Password ==  User.Password);
+
+
+        if (user != null)
         {
+            #region SetCoockie
+            var claims = new List<Claim>
 
-            //Serch For Usename in Database
-            var exist = _Context.Users.Any(p => p.UserName == user.UserName);
-
-            if (!exist)
             {
-                _Context.Users.Add(user);
-                return true;
-            }
 
-            return false;
+            new (ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new (ClaimTypes.Name, user.UserName),
 
+              };
+
+            var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(claimIdentity);
+
+            var authProps = new AuthenticationProperties();
+            //authProps.IsPersistent = model.RememberMe;
+
+            await _IhttpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProps);
+
+            #endregion
+
+            return true;
         }
 
-        #endregion
-
+        else
+        return false;
 
 
     }
+    #endregion
+
 }

@@ -12,6 +12,6 @@ namespace Domain.IRepository
 
         Task<bool> AddUserToDataBase(User user);
 
-
+        Task<bool> LogInUser(User user);
     }
 }
