@@ -18,7 +18,7 @@ namespace Infrastructure.Data
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@$"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=30;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Danial\Documents\PremissonDB.mdf;Integrated Security=True;Connect Timeout=30;TrustServerCertificate=True");
         }
 
         #endregion
@@ -27,11 +27,11 @@ namespace Infrastructure.Data
 
 
         #region Dbsets
-        DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
-        DbSet<Role> Roles { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
-        DbSet<SelectedRole> SelectedRoles { get; set; }
+        public DbSet<SelectedRole> SelectedRoles { get; set; }
 
         #endregion
 

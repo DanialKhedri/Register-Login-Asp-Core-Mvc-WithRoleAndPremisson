@@ -18,7 +18,8 @@ namespace Domain.Entities.User
 
 
         #region Navigation Properties
-        public ICollection<SelectedRole.SelectedRole> selectedRoles;
+        public ICollection<SelectedRole.SelectedRole> SelectedRoles { get; set; }
+
         #endregion
     }
 }

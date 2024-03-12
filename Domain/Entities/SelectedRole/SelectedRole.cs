@@ -22,9 +22,9 @@ namespace Domain.Entities.SelectedRole
 
         #region Navigation Properties
 
-        public User.User User;
+        public User.User User { get; set; }
 
-        public Role.Role Role;
+        public Role.Role Role { get; set; }
 
         #endregion
 
