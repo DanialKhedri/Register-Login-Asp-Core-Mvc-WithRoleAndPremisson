@@ -20,4 +20,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\SitePanel\Data\" />
+    <Folder Include="Areas\SitePanel\Models\" />
+  </ItemGroup>
+
 </Project>
