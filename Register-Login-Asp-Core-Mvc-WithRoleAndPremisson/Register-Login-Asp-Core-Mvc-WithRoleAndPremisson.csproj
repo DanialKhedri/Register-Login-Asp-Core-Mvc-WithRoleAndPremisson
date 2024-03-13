@@ -22,12 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\AdminPanel\Data\" />
+    <Folder Include="Areas\AdminPanel\Models\" />
     <Folder Include="Areas\SitePanel\Data\" />
     <Folder Include="Areas\SitePanel\Models\" />
-    <Folder Include="Areas\sss\Controllers\" />
-    <Folder Include="Areas\sss\Data\" />
-    <Folder Include="Areas\sss\Models\" />
-    <Folder Include="Areas\sss\Views\" />
   </ItemGroup>
 
   <ItemGroup>

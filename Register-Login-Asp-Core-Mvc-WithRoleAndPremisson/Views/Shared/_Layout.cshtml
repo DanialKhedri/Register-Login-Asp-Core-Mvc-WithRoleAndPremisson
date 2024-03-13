@@ -66,8 +66,10 @@
                                 <a class="nav-link text-dark" asp-area="SitePanel" asp-controller="User" asp-action="Shop">Shop</a>
                             </li>
                               <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="SitePanel" asp-controller="User" asp-action="">AdminPanel</a>
+                                <a class="nav-link text-dark" asp-area="AdminPanel" asp-controller="Admin" asp-action="Index" >AdminPanel</a>
                             </li>
+
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
