@@ -2,11 +2,13 @@
 using Application.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Register_Login_Asp_Core_Mvc_WithRoleAndPremisson.Areas.ActionFilterAttributes;
 
 namespace Register_Login_Asp_Core_Mvc_WithRoleAndPremisson.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
     [Authorize]
+    [CheckUserIsAdmin]
     public class AdminController : Controller
     {
 
@@ -25,20 +27,7 @@ namespace Register_Login_Asp_Core_Mvc_WithRoleAndPremisson.Areas.AdminPanel.Cont
       
         public async Task<IActionResult> Index()
         {
-            int userId = User.GetUserId();
-
-            bool IsAdmin = await _IuserService.IsAdmin(userId);
-
-            if (IsAdmin)
-            {
-                return View();
-            }
-
-            else
-            {
-                return NotFound();
-            }
-          
+            return View();
         }
 
         #endregion

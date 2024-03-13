@@ -2,6 +2,7 @@
 using Application.DTOs;
 using Application.IService;
 using Application.Security;
+using Domain.Entities.Role;
 using Domain.Entities.User;
 using Domain.IRepository;
 using System;
@@ -14,7 +15,7 @@ namespace Application.Service
 {
     public class UserService : IUserService
     {
-     
+
 
         #region Ctor
 
@@ -92,12 +93,31 @@ namespace Application.Service
 
         #region IsAdmin
 
-        public async Task<bool> IsAdmin(int UserId) 
+        public async Task<List<Role>> GetRoleByUserId(int UserId)
         {
             return await _IUserRepository.IsAdmin(UserId);
         }
 
         #endregion
+
+
+        public async Task<bool> IsAdmin(int userId)
+        {
+            List<Role> Roles = await GetRoleByUserId(userId);
+
+            bool Premission = false;
+
+            foreach (var item in Roles)
+            {
+                if (item.RoleUniqueName == "Admin")
+                {
+                    Premission = true;
+                }
+            }
+
+            return Premission;
+
+        }
 
     }
 }

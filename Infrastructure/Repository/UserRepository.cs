@@ -1,4 +1,5 @@
-﻿using Domain.Entities.User;
+﻿using Domain.Entities.Role;
+using Domain.Entities.User;
 using Domain.IRepository;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication;
@@ -89,9 +90,9 @@ public class UserRepository : IUserRepository
     #endregion
 
 
-    #region isAdmin
+    #region IsAdmin
 
-    public async Task<bool> IsAdmin(int UserId) 
+    public async Task<List<Role>> IsAdmin(int UserId) 
     {
         bool IsAdmin = false;
 
@@ -99,15 +100,7 @@ public class UserRepository : IUserRepository
                               .Select(p => p.Role)
                               .ToList();
 
-        foreach (var item in Roles)
-        {
-            if (item.RoleUniqueName == "Admin")
-            {
-                IsAdmin = true;
-            }
-        }
-
-        return IsAdmin;
+        return Roles;
     }
     #endregion
 

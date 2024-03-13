@@ -1,4 +1,5 @@
 ﻿using Application.DTOs;
+using Domain.Entities.Role;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,11 @@ namespace Application.IService
 
         public Task<bool> LogIn(UserDTO userDTO);
 
-        public Task<bool> IsAdmin(int UserId);
+        public Task<List<Role>> GetRoleByUserId(int UserId);
+
+        public  Task<bool> IsAdmin(int userId);
+
+
 
     }
 }

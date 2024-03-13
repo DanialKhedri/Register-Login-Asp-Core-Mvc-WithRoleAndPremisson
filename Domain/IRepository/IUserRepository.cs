@@ -1,4 +1,5 @@
-﻿using Domain.Entities.User;
+﻿using Domain.Entities.Role;
+using Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace Domain.IRepository
 
         Task<bool> LogInUser(User user);
 
-        Task<bool> IsAdmin(int UserId);
+        Task<List<Role>> IsAdmin(int UserId);
+
+
 
     }
 }
