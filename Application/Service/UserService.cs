@@ -14,7 +14,8 @@ namespace Application.Service
 {
     public class UserService : IUserService
     {
-        //Ctor
+     
+
         #region Ctor
 
         private readonly IUserRepository _IUserRepository;
@@ -27,7 +28,7 @@ namespace Application.Service
         #endregion
 
 
-        //AddUser Service
+
         #region AddUser
         public async Task<bool> AddUser(UserDTO userDTO)
         {
@@ -39,7 +40,7 @@ namespace Application.Service
                 User user = new User
                 {
                     UserName = userDTO.UserName,
-                    Password = PasswordHasher.EncodePasswordMd5(userDTO.Password) ,
+                    Password = PasswordHasher.EncodePasswordMd5(userDTO.Password),
                 };
 
 
@@ -61,7 +62,7 @@ namespace Application.Service
         #endregion
 
 
-        //LogIn Service
+        #region LogIn
 
         public async Task<bool> LogIn(UserDTO userDTO)
         {
@@ -70,21 +71,33 @@ namespace Application.Service
             User user = new User
             {
                 UserName = userDTO.UserName,
-                Password = PasswordHasher.EncodePasswordMd5(userDTO.Password) ,           
+                Password = PasswordHasher.EncodePasswordMd5(userDTO.Password),
             };
 
 
             //Send object to repository and recive result
 
-           bool IsSucces = await  _IUserRepository.LogInUser(user);
+            bool IsSucces = await _IUserRepository.LogInUser(user);
 
             if (IsSucces)
                 return true;
             else
                 return false;
-        
+
 
         }
+
+        #endregion
+
+
+        #region IsAdmin
+
+        public async Task<bool> IsAdmin(int UserId) 
+        {
+            return await _IUserRepository.IsAdmin(UserId);
+        }
+
+        #endregion
 
     }
 }

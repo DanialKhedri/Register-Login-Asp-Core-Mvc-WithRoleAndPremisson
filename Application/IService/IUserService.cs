@@ -15,5 +15,7 @@ namespace Application.IService
 
         public Task<bool> LogIn(UserDTO userDTO);
 
+        public Task<bool> IsAdmin(int UserId);
+
     }
 }

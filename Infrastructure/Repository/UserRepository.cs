@@ -49,8 +49,6 @@ public class UserRepository : IUserRepository
 
     #endregion
 
-
-
     #region LogIn
     public async Task<bool> LogInUser(User User)
     {
@@ -89,5 +87,29 @@ public class UserRepository : IUserRepository
 
     }
     #endregion
+
+
+    #region isAdmin
+
+    public async Task<bool> IsAdmin(int UserId) 
+    {
+        bool IsAdmin = false;
+
+       var Roles =  _Context.SelectedRoles.Where(p => p.UserId == UserId)
+                              .Select(p => p.Role)
+                              .ToList();
+
+        foreach (var item in Roles)
+        {
+            if (item.RoleUniqueName == "Admin")
+            {
+                IsAdmin = true;
+            }
+        }
+
+        return IsAdmin;
+    }
+    #endregion
+
 
 }
