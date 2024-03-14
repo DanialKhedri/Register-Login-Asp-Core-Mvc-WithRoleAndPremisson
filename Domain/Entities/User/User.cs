@@ -14,6 +14,10 @@ namespace Domain.Entities.User
         public string UserName { get; set; }
 
         public string Password { get; set; }
+
+        public bool IsSuperAdmin { get; set; } = false;
+
+        public bool IsDeleted { get; set; } = false;
         #endregion
 
 

@@ -19,7 +19,7 @@ public class UserRepository : IUserRepository
     #region Ctor
     private readonly DataContext _Context;
     private readonly IHttpContextAccessor _IhttpContextAccessor;
-    public UserRepository(DataContext dataContext , IHttpContextAccessor httpContextAccessor)
+    public UserRepository(DataContext dataContext, IHttpContextAccessor httpContextAccessor)
     {
         _IhttpContextAccessor = httpContextAccessor;
         _Context = dataContext;
@@ -54,7 +54,7 @@ public class UserRepository : IUserRepository
     public async Task<bool> LogInUser(User User)
     {
 
-        var user = _Context.Users.SingleOrDefault(p => p.UserName == User.UserName && p.Password ==  User.Password);
+        var user = _Context.Users.SingleOrDefault(p => p.UserName == User.UserName && p.Password == User.Password);
 
 
         if (user != null)
@@ -83,7 +83,7 @@ public class UserRepository : IUserRepository
         }
 
         else
-        return false;
+            return false;
 
 
     }
@@ -92,17 +92,26 @@ public class UserRepository : IUserRepository
 
     #region IsAdmin
 
-    public async Task<List<Role>> IsAdmin(int UserId) 
+    public async Task<List<Role>> IsAdmin(int UserId)
     {
         bool IsAdmin = false;
 
-       var Roles =  _Context.SelectedRoles.Where(p => p.UserId == UserId)
-                              .Select(p => p.Role)
-                              .ToList();
+        var Roles = _Context.SelectedRoles.Where(p => p.UserId == UserId)
+                               .Select(p => p.Role)
+                               .ToList();
 
         return Roles;
     }
     #endregion
 
+
+    #region GetUserById
+    public async Task<User> GetUserById(int UserId)
+    {
+        return _Context.Users.FirstOrDefault(p => p.Id == UserId);
+
+
+    }
+    #endregion
 
 }

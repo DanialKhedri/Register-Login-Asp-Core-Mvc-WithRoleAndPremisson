@@ -17,7 +17,7 @@ namespace Domain.IRepository
 
         Task<List<Role>> IsAdmin(int UserId);
 
-
+        public  Task<User> GetUserById(int UserId);
 
     }
 }

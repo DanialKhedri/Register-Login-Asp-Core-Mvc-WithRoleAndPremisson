@@ -1,5 +1,6 @@
 ﻿using Application.Extensions;
 using Application.IService;
+using Domain.Entities.User;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Register_Login_Asp_Core_Mvc_WithRoleAndPremisson.Areas.ActionFilterAttributes
@@ -14,7 +15,17 @@ namespace Register_Login_Asp_Core_Mvc_WithRoleAndPremisson.Areas.ActionFilterAtt
 
             int userId = context.HttpContext.User.GetUserId();
 
-            bool isadmin = await Service.IsAdmin(userId);
+            User user = await Service.GetUserById(userId);
+
+            //Check IsAdmin
+            bool isadmin = await Service.IsAdmin(userId); 
+
+            //Check Is SuperAdmin
+            if (user.IsSuperAdmin)     
+                isadmin = true;
+        
+
+
 
             if (isadmin == false)
             {

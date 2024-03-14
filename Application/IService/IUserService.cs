@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Domain.Entities.Role;
+using Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Application.IService
 
         public  Task<bool> IsAdmin(int userId);
 
+        public Task<User> GetUserById(int UserId);
 
 
     }

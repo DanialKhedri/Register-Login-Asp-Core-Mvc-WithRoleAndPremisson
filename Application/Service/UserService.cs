@@ -28,8 +28,6 @@ namespace Application.Service
 
         #endregion
 
-
-
         #region AddUser
         public async Task<bool> AddUser(UserDTO userDTO)
         {
@@ -91,16 +89,26 @@ namespace Application.Service
         #endregion
 
 
-        #region IsAdmin
+        #region GetUserId
+        public Task<User> GetUserById(int UserId) 
+        {
 
+           return _IUserRepository.GetUserById(UserId);
+
+
+        }
+        #endregion
+
+
+        #region GetRoleByUserId
         public async Task<List<Role>> GetRoleByUserId(int UserId)
         {
             return await _IUserRepository.IsAdmin(UserId);
         }
-
         #endregion
 
 
+        #region IsAdmin
         public async Task<bool> IsAdmin(int userId)
         {
             List<Role> Roles = await GetRoleByUserId(userId);
@@ -119,5 +127,6 @@ namespace Application.Service
 
         }
 
+        #endregion
     }
 }
