@@ -16,14 +16,16 @@ body {
   display: flex;
   flex-direction: row-reverse;
   height: 100%;
+  flex-direction: column;
 }
 
 .content {
   display: flex;
-  flex: 1;
-  width: 80%;
-  height: 100%;
-  margin: 5px;
+    flex: 1;
+    width: 80%;
+    height: 100%;
+    margin: 5px;
+    flex-direction: column;
 }
 
 .sidebar {
@@ -35,6 +37,7 @@ body {
   height: 100%;
   justify-content: flex-start;
   align-items: center;
+  width: 15%;
 }
 
 .sidebar button {
@@ -45,6 +48,7 @@ body {
 .main-content {
   flex: 1;
   padding: 20px;
+  margin: 7px;
 }
 
 .Btn
@@ -52,11 +56,43 @@ body {
     color: black;
     height: 10%;
     width: 75%;
-border-radius: 10px;
-font-weight: bold;
-cursor:pointer;
-margin: 7%;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor:pointer;
+    margin: 7%;
 
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.navbar-brand {
+    margin-right: 20px;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.Middle
+{
+  display: flex;
+  flex-direction: row-reverse; 
+  height: 100%;
 }
 
 
@@ -65,20 +101,28 @@ margin: 7%;
 
 <body>
 
-<div class="sidebar">
-  <button class="Btn">Button 1</button>
-  <button class="Btn">Button 2</button>
-  <button class="Btn">Button 3</button>
-  <button class="Btn">Button 4</button>
-  <button class="Btn">Button 5</button>
-  <button class="Btn">Button 6</button>
+  <nav class="navbar">
+    <a class="navbar-brand" href="#">Brand</a>
+    <div>
+        <a class="nav-link" asp-area="SitePanel" asp-controller="User" asp-action="Index" >Home</a>
+        
+    </div>
+</nav>
+  
+<div class="Middle">
+
+  <div class="sidebar">
+
+    <button class="Btn"><a asp-area="AdminPanel" asp-controller="Admin" asp-action="ListOfUsers"> List Of Users</a></button>
+
+  </div>
+  
+  <div class="content">
+    @RenderBody();
+  </div>
+
 </div>
 
-<div class="content">
-  
-    @RenderBody();
-  
-</div>
 
 </body>
 </html>
