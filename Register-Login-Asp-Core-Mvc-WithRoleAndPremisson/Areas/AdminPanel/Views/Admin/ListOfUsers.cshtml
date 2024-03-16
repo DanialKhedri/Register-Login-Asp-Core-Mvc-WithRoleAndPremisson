@@ -15,6 +15,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
+
+    .img
+    {
+       width: 100px;
+      
+    }
+
     .TableContainer {
         margin: 5%;
     }
@@ -28,19 +35,45 @@
                 <th>UserName</th>
                 <th>Password</th>
                 <th>CreateDate</th>
-                
+                    <th>Avatar</th>
+
             </tr>
         </thead>
         <tbody>
 
                     @foreach (var item in Model)
                     {
-                  <tr>
+                <tr>
+
                     <td>@item.Id </td>
                     <td>@item.UserName </td>
                     <td>@item.Password</td>
-                    <td>@item.CreateDate</td>           
-                  </tr>
+                    <td>@item.CreateDate</td>
+
+                            @if (@item.UserAvatar != null)
+                            {
+                        <td><img src="@item.UserAvatar"></img> </td>
+                            }
+
+                            @if (@item.UserAvatar == null)
+                            {
+                        <td><img class="img" src="~/Images/profilephoto.png"></img> </td>
+                            }
+
+
+                                <td>
+                                    <button>
+                                       <a>Edit</a>
+                                    </button>
+
+                                    <br></br>
+
+                                    <button>
+                                       <a>Remove</a>
+                                    </button>
+                 
+                                </td>
+                </tr>
                     }
 
             <!-- اطلاعات بیشتر را اضافه کنید -->
