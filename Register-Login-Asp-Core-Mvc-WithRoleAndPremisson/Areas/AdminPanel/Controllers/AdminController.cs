@@ -1,4 +1,5 @@
-﻿using Application.Extensions;
+﻿using Application.DTOs;
+using Application.Extensions;
 using Application.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,13 +25,41 @@ namespace Register_Login_Asp_Core_Mvc_WithRoleAndPremisson.Areas.AdminPanel.Cont
         #endregion
 
         #region Index
-      
+
         public async Task<IActionResult> Index()
         {
             return View();
         }
 
         #endregion
+
+
+
+        #region ListOfUsers
+
+        [HttpGet, ValidateAntiForgeryToken]
+        public async Task<IActionResult> ListOfUsers()
+        {
+
+            return View();
+
+        }
+
+        #endregion
+
+
+
+
+
+        #region EditUser
+        [HttpGet, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUser()
+        {
+            return View();
+        }
+        #endregion
+
+
 
 
     }
