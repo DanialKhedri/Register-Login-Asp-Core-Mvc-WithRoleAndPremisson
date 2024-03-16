@@ -90,10 +90,10 @@ namespace Application.Service
 
 
         #region GetUserId
-        public Task<User> GetUserById(int UserId) 
+        public Task<User> GetUserById(int UserId)
         {
 
-           return _IUserRepository.GetUserById(UserId);
+            return _IUserRepository.GetUserById(UserId);
 
 
         }
@@ -127,6 +127,33 @@ namespace Application.Service
 
         }
 
+        #endregion
+
+        #region GetListOfUser
+
+        public async Task<List<EditUserDTO>> GetListOfUsers()
+        {
+            //GetListOfUsers
+            var user = _IUserRepository.GetListOfUser();
+
+            //Object Mapping
+            List<EditUserDTO> editUserDTOs = new List<EditUserDTO>();
+            foreach (var item in user)
+            {
+                editUserDTOs.Add(new EditUserDTO
+                {
+                    Id = item.Id,
+                    UserName = item.UserName,
+                    Password = item.Password,
+                    CreateDate = item.CreateDate,
+                    UserAvatar = item.UserAvatar,
+                });
+            }
+
+            //Return
+            return editUserDTOs;
+
+        }
         #endregion
     }
 }

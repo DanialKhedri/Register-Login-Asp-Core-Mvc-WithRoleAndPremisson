@@ -39,7 +39,11 @@ public class AdminController : Controller
     [HttpGet]
     public async Task<IActionResult> ListOfUsers()
     {
-        return View();
+        //Get List 
+        List<EditUserDTO> userDTOList = await _IuserService.GetListOfUsers();
+        //Pass To View
+
+        return View(userDTOList);
 
     }
 

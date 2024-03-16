@@ -1,10 +1,6 @@
 ﻿using Domain.Entities.Role;
 using Domain.Entities.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Domain.IRepository
 {
@@ -18,6 +14,8 @@ namespace Domain.IRepository
         Task<List<Role>> IsAdmin(int UserId);
 
         public  Task<User> GetUserById(int UserId);
+
+        public List<User> GetListOfUser();
 
     }
 }

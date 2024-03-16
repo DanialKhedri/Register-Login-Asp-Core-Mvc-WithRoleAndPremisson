@@ -23,6 +23,8 @@ namespace Application.IService
 
         public Task<User> GetUserById(int UserId);
 
+        public Task<List<EditUserDTO>> GetListOfUsers();
+
 
     }
 }

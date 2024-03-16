@@ -11,6 +11,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Application.DTOs;
+
 
 namespace Infrastructure.Repository;
 
@@ -113,5 +115,29 @@ public class UserRepository : IUserRepository
 
     }
     #endregion
+
+    #region GetListOfUSers
+
+    public List<User> GetListOfUser()
+    {
+        //Get List
+
+        List<User> User = _Context.Users.Where(u => !u.IsDeleted)
+                             .OrderByDescending(u => u.CreateDate)
+                             .Select(u => new User
+                             {
+                                 Id = u.Id,
+                                 UserName = u.UserName,
+                                 Password = u.Password,
+                                 CreateDate = u.CreateDate,
+                                 UserAvatar = u.UserAvatar,
+
+                             }
+                             ).ToList();
+
+        return User;
+    }
+    #endregion
+
 
 }

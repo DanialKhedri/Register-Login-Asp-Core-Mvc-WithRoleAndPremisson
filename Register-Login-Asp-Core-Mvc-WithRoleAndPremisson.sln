@@ -21,11 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{FE73EE39-8951-4599-BF05-34DA811A9619}"
 	ProjectSection(ProjectDependencies) = postProject
-		{6B84CC2E-9612-48C4-8F62-9BEE4C30683C} = {6B84CC2E-9612-48C4-8F62-9BEE4C30683C}
 		{D922980F-717C-4D67-8FA5-B241B57AB578} = {D922980F-717C-4D67-8FA5-B241B57AB578}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{6B84CC2E-9612-48C4-8F62-9BEE4C30683C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FE73EE39-8951-4599-BF05-34DA811A9619} = {FE73EE39-8951-4599-BF05-34DA811A9619}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

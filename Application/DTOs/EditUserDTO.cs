@@ -15,8 +15,6 @@ namespace Application.DTOs
 
         public string Password { get; set; }
 
-        public bool IsDeleted { get; set; } = false;
-
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
         public string? UserAvatar { get; set; } = null;
