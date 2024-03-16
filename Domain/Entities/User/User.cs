@@ -18,6 +18,8 @@ namespace Domain.Entities.User
         public bool IsSuperAdmin { get; set; } = false;
 
         public bool IsDeleted { get; set; } = false;
+
+        public DateTime CreateDate { get; set; } = DateTime.Now;
         #endregion
 
 
