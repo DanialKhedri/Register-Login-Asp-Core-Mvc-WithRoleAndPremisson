@@ -17,5 +17,9 @@ namespace Domain.IRepository
 
         public List<User> GetListOfUser();
 
+        public List<int> GetRoleOfUserById(int UserId);
+    
+
+
     }
 }

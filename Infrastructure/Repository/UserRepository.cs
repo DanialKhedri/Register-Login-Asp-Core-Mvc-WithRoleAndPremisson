@@ -140,4 +140,14 @@ public class UserRepository : IUserRepository
     #endregion
 
 
+    public  List<int> GetRoleOfUserById(int UserId)
+    {
+       return _Context.SelectedRoles.Where(u => u.UserId == UserId)
+                               .Select(u => u.RoleId)
+                               .ToList();
+
+
+    }
+
+
 }

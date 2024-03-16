@@ -19,11 +19,14 @@ namespace Application.IService
 
         public Task<List<Role>> GetRoleByUserId(int UserId);
 
-        public  Task<bool> IsAdmin(int userId);
+        public Task<bool> IsAdmin(int userId);
 
         public Task<User> GetUserById(int UserId);
 
         public Task<List<ListOfUserDTO>> GetListOfUsers();
+
+        public Task<EditUserDto> GetEditUserDTO(int UserId);
+
 
 
     }

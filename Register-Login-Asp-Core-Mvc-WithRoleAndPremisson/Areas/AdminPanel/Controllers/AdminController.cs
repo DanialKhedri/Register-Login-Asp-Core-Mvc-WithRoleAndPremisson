@@ -53,13 +53,14 @@ public class AdminController : Controller
     public async Task<IActionResult> EditUser(int UserId)
     {
         //Get UserById
+         var userDTO =await _IuserService.GetEditUserDTO(UserId);
 
         //Return User
-        return View();
+        return View(userDTO);
     }
 
     [HttpPost,ValidateAntiForgeryToken]
-    public async Task<IActionResult> EditUser()
+    public async Task<IActionResult> EditUser(EditUserDto editUserDto)
     {
         return View();
     }

@@ -140,7 +140,7 @@ namespace Application.Service
             List<ListOfUserDTO> ListOfUserDto = new List<ListOfUserDTO>();
             foreach (var item in user)
             {
-                editUserDTOs.Add(new ListOfUserDTO
+                ListOfUserDto.Add(new ListOfUserDTO
                 {
                     Id = item.Id,
                     UserName = item.UserName,
@@ -155,5 +155,36 @@ namespace Application.Service
 
         }
         #endregion
+
+
+        
+
+        public async Task<EditUserDto> GetEditUserDTO(int UserId)
+        {
+
+            //Get User By Id
+            User user = await _IUserRepository.GetUserById(UserId);
+
+            //GetUserRoles
+
+            var RolesIds = _IUserRepository.GetRoleOfUserById(UserId);
+
+            //OjectMapping
+
+            EditUserDto editUserDto = new EditUserDto()
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Password = user.Password,
+                CreateDate = user.CreateDate,
+                UserAvatar = user.UserAvatar,
+                UserSelectedRoles = RolesIds,
+            };
+
+
+            return editUserDto;
+        }
+
+       
     }
 }

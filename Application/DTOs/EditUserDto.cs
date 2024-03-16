@@ -19,7 +19,7 @@ namespace Application.DTOs
 
         public string? UserAvatar { get; set; } = null;
 
-        List<int> UserSelectedRoles { get; set; }
+       public List<int> UserSelectedRoles { get; set; }
 
         #endregion
     }
