@@ -20,6 +20,8 @@ namespace Domain.Entities.User
         public bool IsDeleted { get; set; } = false;
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
+
+        public string? UserAvatar { get; set; } = null;
         #endregion
 
 
