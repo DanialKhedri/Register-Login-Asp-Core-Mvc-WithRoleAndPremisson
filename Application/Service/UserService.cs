@@ -131,16 +131,16 @@ namespace Application.Service
 
         #region GetListOfUser
 
-        public async Task<List<EditUserDTO>> GetListOfUsers()
+        public async Task<List<ListOfUserDTO>> GetListOfUsers()
         {
             //GetListOfUsers
             var user = _IUserRepository.GetListOfUser();
 
             //Object Mapping
-            List<EditUserDTO> editUserDTOs = new List<EditUserDTO>();
+            List<ListOfUserDTO> ListOfUserDto = new List<ListOfUserDTO>();
             foreach (var item in user)
             {
-                editUserDTOs.Add(new EditUserDTO
+                editUserDTOs.Add(new ListOfUserDTO
                 {
                     Id = item.Id,
                     UserName = item.UserName,
@@ -151,7 +151,7 @@ namespace Application.Service
             }
 
             //Return
-            return editUserDTOs;
+            return ListOfUserDto;
 
         }
         #endregion

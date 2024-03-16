@@ -1,5 +1,5 @@
 ﻿@using Application.DTOs
-@model List<EditUserDTO>;
+@model List<ListOfUserDTO>;
 @{
     Layout = "_AdminLayout";
 
@@ -63,7 +63,13 @@
 
                                 <td>
                                     <button>
-                                       <a>Edit</a>
+                                       <a
+                                           asp-area="AdminPanel"
+                                           asp-controller="Admin"
+                                           asp-action="EditUser"
+                                           asp-route-UserId="@item.Id"
+                               
+                                       >Edit</a>
                                     </button>
 
                                     <br></br>

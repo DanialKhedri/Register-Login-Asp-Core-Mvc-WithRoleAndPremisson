@@ -33,14 +33,12 @@ public class AdminController : Controller
 
     #endregion
 
-
-
     #region ListOfUsers
     [HttpGet]
     public async Task<IActionResult> ListOfUsers()
     {
         //Get List 
-        List<EditUserDTO> userDTOList = await _IuserService.GetListOfUsers();
+        List<ListOfUserDTO> userDTOList = await _IuserService.GetListOfUsers();
         //Pass To View
 
         return View(userDTOList);
@@ -50,11 +48,17 @@ public class AdminController : Controller
     #endregion
 
 
-
-
-
     #region EditUser
-    [HttpGet, ValidateAntiForgeryToken]
+    [HttpGet]
+    public async Task<IActionResult> EditUser(int UserId)
+    {
+        //Get UserById
+
+        //Return User
+        return View();
+    }
+
+    [HttpPost,ValidateAntiForgeryToken]
     public async Task<IActionResult> EditUser()
     {
         return View();

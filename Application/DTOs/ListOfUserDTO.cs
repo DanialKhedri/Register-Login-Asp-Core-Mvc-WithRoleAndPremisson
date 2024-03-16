@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs
 {
-    public class EditUserDTO
+    public class ListOfUserDTO
     {
         #region Properties
         public int Id { get; set; }
