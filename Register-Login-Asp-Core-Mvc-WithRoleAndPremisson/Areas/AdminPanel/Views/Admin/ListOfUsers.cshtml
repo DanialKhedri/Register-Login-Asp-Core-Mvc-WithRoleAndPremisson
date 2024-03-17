@@ -16,10 +16,9 @@
 
 <style>
 
-    .img
-    {
-       width: 100px;
-      
+    .img {
+        width: 50px;
+        height: 50px;
     }
 
     .TableContainer {
@@ -35,7 +34,7 @@
                 <th>UserName</th>
                 <th>Password</th>
                 <th>CreateDate</th>
-                    <th>Avatar</th>
+                <th>Avatar</th>
 
             </tr>
         </thead>
@@ -52,7 +51,7 @@
 
                             @if (@item.UserAvatar != null)
                             {
-                        <td><img src="@item.UserAvatar"></img> </td>
+                        <td><img class="img" src="~/Images/@item.UserAvatar"></img> </td>
                             }
 
                             @if (@item.UserAvatar == null)
@@ -61,24 +60,21 @@
                             }
 
 
-                                <td>
-                                    <button>
-                                       <a
-                                           asp-area="AdminPanel"
-                                           asp-controller="Admin"
-                                           asp-action="EditUser"
-                                           asp-route-UserId="@item.Id"
-                               
-                                       >Edit</a>
-                                    </button>
+                    <td>
+                        <button>
+                            <a asp-area="AdminPanel"
+                           asp-controller="Admin"
+                           asp-action="EditUser"
+                           asp-route-UserId="@item.Id">Edit</a>
+                        </button>
 
-                                    <br></br>
+                        <br></br>
 
-                                    <button>
-                                       <a>Remove</a>
-                                    </button>
-                 
-                                </td>
+                        <button>
+                            <a>Remove</a>
+                        </button>
+
+                    </td>
                 </tr>
                     }
 

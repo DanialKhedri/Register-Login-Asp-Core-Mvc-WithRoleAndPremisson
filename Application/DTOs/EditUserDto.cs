@@ -19,11 +19,11 @@ namespace Application.DTOs
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
-        public string? UserAvatarOriginal { get; set; } = null;
+        public string? UserAvatar { get; set; } = null;
 
-        public IFormFile UserAvatar { get; set; } = null;
+        public IFormFile? UserAvatarFormFile { get; set; } = null;
 
-       public List<int> UserSelectedRoles { get; set; }
+        public List<int> UserSelectedRoles { get; set; }
 
         #endregion
     }

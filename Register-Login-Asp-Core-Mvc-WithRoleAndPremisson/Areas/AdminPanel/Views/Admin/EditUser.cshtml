@@ -10,9 +10,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beautiful Form Design</title>
     <style>
+
+        .Img {
+            height: 25%;
+            width: 25%;
+        }
 
         .Form {
             display: flex;
@@ -66,27 +70,29 @@
 <body>
     <div class="form-container">
         <h2>Edit User</h2>
-        <form class="Form" method="post" asp-area="AdminPanel" asp-controller="Admin" asp-action="EditUser">
+        <form class="Form" method="post" asp-area="AdminPanel" asp-controller="Admin" asp-action="EditUser" enctype="multipart/form-data">
+
 
             <input readonly asp-for="Id" type="text">
-            <input asp-for="UserName" type="email">
-            <input asp-for="Password" type="email">
+            <input asp-for="UserName" type="text">
+            <input asp-for="Password" type="text">
 
-            @if (string.IsNullOrEmpty(Model.UserAvatarOriginal))
+            @if (string.IsNullOrEmpty(Model.UserAvatar))
             {
                 <img class="Img" id="image" src="~/Images/profilephoto.png">
             }
             else
             {
-                <img class="Img" id="image" src="~/Images/@Model.UserAvatar">
+                <img class="Img" id="image"  src="~/Images/@Model.UserAvatar">
             }
 
             <br></br>
-            <input id="UserAvatar" type="file" asp-for="UserAvatar"></input>
+
+            <input type="file"  asp-for="UserAvatarFormFile"></>
 
             <br></br>
 
-            <button type="submit">Submit</button>
+            <button type="submit" >Submit</button>
 
         </form>
     </div>
@@ -95,22 +101,26 @@
 </body>
 
 
-      <script>
+<script>
 
-        const fileInput = document.getElementById('UserAvatar');
-        const image = document.getElementById('image');
+    const fileInput = document.getElementById('UserAvatarFormFile');
 
-        fileInput.addEventListener('change', function() {
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+    const image = document.getElementById('image');
 
-            reader.onload = function(e) {
-                image.src = e.target.result;
-            }
+    fileInput.addEventListener('change', function()
+    {
 
-            reader.readAsDataURL(file);
-        });
-    </script>
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            image.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+
+</script>
 
 
 

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Extensions.NameGenerator;
 
 namespace Application.Service
 {
@@ -20,9 +21,11 @@ namespace Application.Service
 
         private readonly IUserRepository _IUserRepository;
 
-        public UserService(IUserRepository IUserRepository)
+        private readonly FileSaver _FileSaver;
+        public UserService(IUserRepository IUserRepository, FileSaver FileSaver)
         {
             _IUserRepository = IUserRepository;
+            _FileSaver = FileSaver;
         }
 
         #endregion
@@ -177,7 +180,7 @@ namespace Application.Service
                 UserName = user.UserName,
                 Password = user.Password,
                 CreateDate = user.CreateDate,
-                UserAvatarOriginal = user.UserAvatar,
+                UserAvatar = user.UserAvatar,
                 UserSelectedRoles = RolesIds,
             };
 
@@ -187,6 +190,43 @@ namespace Application.Service
 
         #endregion
 
+
+        #region EditUser
+
+        public async Task<bool> EditUser(EditUserDto editUserDto)
+        {
+
+            User user = new User
+            {
+                Id = editUserDto.Id,
+                UserName = editUserDto.UserName,
+                Password = editUserDto.Password,
+  
+            };
+
+
+            if (editUserDto.UserAvatarFormFile != null)
+            {
+                //Save New Image
+                user.UserAvatar = NameGenerator.GenerateUniqCode() + Path.GetExtension(editUserDto.UserAvatarFormFile.FileName);
+
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", user.UserAvatar);
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    editUserDto.UserAvatarFormFile.CopyTo(stream);
+                }
+            }
+
+
+            var Issucces = await _IUserRepository.EditUserDto(user);
+
+
+            return Issucces;
+
+        }
+
+
+        #endregion
 
 
     }

@@ -11,12 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 //Add DBContext
 builder.Services.AddDbContext<DataContext>();
 
 //Sevices
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<FileSaver>();
 
 
 //Repository

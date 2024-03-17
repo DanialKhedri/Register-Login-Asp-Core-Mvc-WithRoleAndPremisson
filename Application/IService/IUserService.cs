@@ -27,6 +27,7 @@ namespace Application.IService
 
         public Task<EditUserDto> GetEditUserDTO(int UserId);
 
+        public Task<bool> EditUser(EditUserDto editUserDto);
 
 
     }

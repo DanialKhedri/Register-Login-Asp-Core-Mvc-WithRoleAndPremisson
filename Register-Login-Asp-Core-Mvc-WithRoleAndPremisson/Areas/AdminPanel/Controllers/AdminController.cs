@@ -24,6 +24,7 @@ public class AdminController : Controller
 
     #endregion
 
+
     #region Index
 
     public async Task<IActionResult> Index()
@@ -32,6 +33,7 @@ public class AdminController : Controller
     }
 
     #endregion
+
 
     #region ListOfUsers
     [HttpGet]
@@ -62,7 +64,21 @@ public class AdminController : Controller
     [HttpPost,ValidateAntiForgeryToken]
     public async Task<IActionResult> EditUser(EditUserDto editUserDto)
     {
-        return View();
+
+        
+            bool IsSucces = await _IuserService.EditUser(editUserDto);
+
+            if (IsSucces)
+            {
+                return RedirectToAction(nameof(ListOfUsers));
+            }
+            else
+            {
+                return View();
+            }
+       
+    
+
     }
     #endregion
 

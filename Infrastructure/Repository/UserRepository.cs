@@ -145,12 +145,21 @@ public class UserRepository : IUserRepository
     #region GetRoleOfUserById
     public List<int> GetRoleOfUserById(int UserId)
     {
-       return _Context.SelectedRoles.Where(u => u.UserId == UserId)
-                                    .Select(u => u.RoleId)
-                                    .ToList();
+        return _Context.SelectedRoles.Where(u => u.UserId == UserId)
+                                     .Select(u => u.RoleId)
+                                     .ToList();
 
 
     }
     #endregion
+
+    public async Task<bool> EditUserDto(User user)
+    {
+
+              _Context.Users.Update(user);
+        await _Context.SaveChangesAsync();
+        return true;
+
+    }
 
 }

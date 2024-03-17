@@ -13,12 +13,13 @@ namespace Domain.IRepository
 
         Task<List<Role>> IsAdmin(int UserId);
 
-        public  Task<User> GetUserById(int UserId);
+        public Task<User> GetUserById(int UserId);
 
         public List<User> GetListOfUser();
 
         public List<int> GetRoleOfUserById(int UserId);
-    
+
+        public Task<bool> EditUserDto(User user);
 
 
     }
