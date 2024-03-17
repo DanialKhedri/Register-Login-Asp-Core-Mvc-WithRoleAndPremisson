@@ -52,6 +52,7 @@ public class UserRepository : IUserRepository
 
     #endregion
 
+
     #region LogIn
     public async Task<bool> LogInUser(User User)
     {
@@ -116,6 +117,7 @@ public class UserRepository : IUserRepository
     }
     #endregion
 
+
     #region GetListOfUSers
 
     public List<User> GetListOfUser()
@@ -140,14 +142,15 @@ public class UserRepository : IUserRepository
     #endregion
 
 
-    public  List<int> GetRoleOfUserById(int UserId)
+    #region GetRoleOfUserById
+    public List<int> GetRoleOfUserById(int UserId)
     {
        return _Context.SelectedRoles.Where(u => u.UserId == UserId)
-                               .Select(u => u.RoleId)
-                               .ToList();
+                                    .Select(u => u.RoleId)
+                                    .ToList();
 
 
     }
-
+    #endregion
 
 }

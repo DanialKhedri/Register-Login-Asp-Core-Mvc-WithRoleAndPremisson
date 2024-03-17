@@ -16,7 +16,6 @@ namespace Application.Service
     public class UserService : IUserService
     {
 
-
         #region Ctor
 
         private readonly IUserRepository _IUserRepository;
@@ -27,6 +26,7 @@ namespace Application.Service
         }
 
         #endregion
+
 
         #region AddUser
         public async Task<bool> AddUser(UserDTO userDTO)
@@ -129,6 +129,7 @@ namespace Application.Service
 
         #endregion
 
+
         #region GetListOfUser
 
         public async Task<List<ListOfUserDTO>> GetListOfUsers()
@@ -157,8 +158,7 @@ namespace Application.Service
         #endregion
 
 
-        
-
+        #region GetEditUserDTO
         public async Task<EditUserDto> GetEditUserDTO(int UserId)
         {
 
@@ -185,6 +185,9 @@ namespace Application.Service
             return editUserDto;
         }
 
-       
+        #endregion
+
+
+
     }
 }

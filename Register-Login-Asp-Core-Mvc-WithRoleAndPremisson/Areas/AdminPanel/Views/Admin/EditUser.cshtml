@@ -14,6 +14,14 @@
     <title>Beautiful Form Design</title>
     <style>
 
+        .Form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+        }
+
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -57,15 +65,31 @@
 <body>
     <div class="form-container">
         <h2>Edit User</h2>
-        <form method="post" asp-area="AdminPanel" asp-controller="Admin" asp-action="EditUser">
+        <form class="Form" method="post" asp-area="AdminPanel" asp-controller="Admin" asp-action="EditUser">
 
             <input readonly asp-for="Id" type="text">
             <input asp-for="UserName" type="email">
             <input asp-for="Password" type="email">
 
+            @if (string.IsNullOrEmpty(Model.UserAvatar))
+            {
+                <img class="Img" src="~/Images/profilephoto.png">
+            }
+            else
+            {
+                <img class="Img" src="~/Images/@Model.UserAvatar">
+            }
+
+            <br></br>
+            <input type="file" asp-for="UserAvatar"></input>
+
+            <br></br>
+
             <button type="submit">Submit</button>
 
         </form>
     </div>
+
+
 </body>
 </html>
