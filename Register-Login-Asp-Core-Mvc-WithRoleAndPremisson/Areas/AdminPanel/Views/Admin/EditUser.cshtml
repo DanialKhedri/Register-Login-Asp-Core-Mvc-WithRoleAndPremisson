@@ -6,8 +6,8 @@
 }
 
 
-<!DOCTYPE html>
-<html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,6 +62,7 @@
             }
     </style>
 </head>
+
 <body>
     <div class="form-container">
         <h2>Edit User</h2>
@@ -71,17 +72,17 @@
             <input asp-for="UserName" type="email">
             <input asp-for="Password" type="email">
 
-            @if (string.IsNullOrEmpty(Model.UserAvatar))
+            @if (string.IsNullOrEmpty(Model.UserAvatarOriginal))
             {
-                <img class="Img" src="~/Images/profilephoto.png">
+                <img class="Img" id="image" src="~/Images/profilephoto.png">
             }
             else
             {
-                <img class="Img" src="~/Images/@Model.UserAvatar">
+                <img class="Img" id="image" src="~/Images/@Model.UserAvatar">
             }
 
             <br></br>
-            <input type="file" asp-for="UserAvatar"></input>
+            <input id="UserAvatar" type="file" asp-for="UserAvatar"></input>
 
             <br></br>
 
@@ -92,4 +93,24 @@
 
 
 </body>
-</html>
+
+
+      <script>
+
+        const fileInput = document.getElementById('UserAvatar');
+        const image = document.getElementById('image');
+
+        fileInput.addEventListener('change', function() {
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+
+

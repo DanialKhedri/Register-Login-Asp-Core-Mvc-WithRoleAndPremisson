@@ -177,7 +177,7 @@ namespace Application.Service
                 UserName = user.UserName,
                 Password = user.Password,
                 CreateDate = user.CreateDate,
-                UserAvatar = user.UserAvatar,
+                UserAvatarOriginal = user.UserAvatar,
                 UserSelectedRoles = RolesIds,
             };
 

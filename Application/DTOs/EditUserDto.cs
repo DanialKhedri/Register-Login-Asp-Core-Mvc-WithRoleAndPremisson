@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Application.DTOs
 {
@@ -17,7 +19,9 @@ namespace Application.DTOs
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
-        public string? UserAvatar { get; set; } = null;
+        public string? UserAvatarOriginal { get; set; } = null;
+
+        public IFormFile UserAvatar { get; set; } = null;
 
        public List<int> UserSelectedRoles { get; set; }
 
