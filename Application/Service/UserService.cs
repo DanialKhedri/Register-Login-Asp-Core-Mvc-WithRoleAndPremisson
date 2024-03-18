@@ -204,7 +204,7 @@ namespace Application.Service
   
             };
 
-
+            #region AddImage 
             if (editUserDto.UserAvatarFormFile != null)
             {
                 //Save New Image
@@ -216,7 +216,7 @@ namespace Application.Service
                     editUserDto.UserAvatarFormFile.CopyTo(stream);
                 }
             }
-
+            #endregion
 
             var Issucces = await _IUserRepository.EditUserDto(user);
 
