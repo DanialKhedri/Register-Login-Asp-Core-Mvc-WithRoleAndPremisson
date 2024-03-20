@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Role;
+﻿using Application.DTOs;
+using Domain.Entities.Role;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Application.IService
     {
         public Task<List<Role>> GetListofRoles();
 
+        public void DeleteRolesofUserById(int UserId);
+
+        public void AddSelectedRole(List<int> selectedRole, EditUserDto User);
+
+        public void SaveChange();
 
     }
 }

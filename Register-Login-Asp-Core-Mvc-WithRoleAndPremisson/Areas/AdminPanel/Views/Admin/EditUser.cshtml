@@ -95,11 +95,12 @@
 
             <br></br>
 
-            @if(Roles != null){
+            @if(Roles != null)
+            {
             @foreach (var item in Roles)
             {
                 <label>@item.RoleUniqueName</label>
-                <input type="checkbox" id="@item.Id" name="SelectedRoles" />
+                <input type="checkbox" value="@item.Id" name="SelectedRoles" />
                 <br></br>
             }
             }

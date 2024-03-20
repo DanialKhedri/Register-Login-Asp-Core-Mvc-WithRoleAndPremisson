@@ -57,7 +57,7 @@ public class AdminController : Controller
     public async Task<IActionResult> EditUser(int UserId)
     {
         //Get UserById
-         var userDTO =await _IuserService.GetEditUserDTO(UserId);
+        var userDTO = await _IuserService.GetEditUserDTO(UserId);
 
         ViewData["Roles"] = await _IRoleService.GetListofRoles();
 
@@ -65,23 +65,34 @@ public class AdminController : Controller
         return View(userDTO);
     }
 
-    [HttpPost,ValidateAntiForgeryToken]
-    public async Task<IActionResult> EditUser(EditUserDto editUserDto)
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditUser(EditUserDto editUserDto, List<int> SelectedRoles)
     {
 
-        
-            bool IsSucces = await _IuserService.EditUser(editUserDto);
+
+
+        bool IsSucces = await _IuserService.EditUser(editUserDto);
+
+        if (SelectedRoles != null)
+        {
+            _IRoleService.DeleteRolesofUserById(editUserDto.Id);
+            _IRoleService.AddSelectedRole(SelectedRoles, editUserDto);
+
+            _IRoleService.SaveChange();
+        }
+       
 
             if (IsSucces)
-            {
-                return RedirectToAction(nameof(ListOfUsers));
-            }
-            else
-            {
-                return View();
-            }
-       
-    
+        {
+            return RedirectToAction(nameof(ListOfUsers));
+        }
+        else
+        {
+            return View();
+        }
+
+
+
 
     }
     #endregion
