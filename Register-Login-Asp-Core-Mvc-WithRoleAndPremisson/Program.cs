@@ -17,10 +17,12 @@ builder.Services.AddDbContext<DataContext>();
 //Sevices
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<FileSaver>();
-
+builder.Services.AddScoped<IRoleService,RoleService>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
 
 //HttpAccessor
 builder.Services.AddHttpContextAccessor();

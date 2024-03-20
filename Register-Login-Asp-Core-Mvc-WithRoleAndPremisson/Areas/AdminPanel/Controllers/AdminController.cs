@@ -16,10 +16,12 @@ public class AdminController : Controller
     #region Ctor
 
     private readonly IUserService _IuserService;
+    private readonly IRoleService _IRoleService;
 
-    public AdminController(IUserService IuserService)
+    public AdminController(IUserService IuserService, IRoleService IRoleService)
     {
         _IuserService = IuserService;
+        _IRoleService = IRoleService;
     }
 
     #endregion
@@ -56,6 +58,8 @@ public class AdminController : Controller
     {
         //Get UserById
          var userDTO =await _IuserService.GetEditUserDTO(UserId);
+
+        ViewData["Roles"] = await _IRoleService.GetListofRoles();
 
         //Return User
         return View(userDTO);

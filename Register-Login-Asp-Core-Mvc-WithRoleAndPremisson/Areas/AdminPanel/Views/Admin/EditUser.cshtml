@@ -1,8 +1,11 @@
 ﻿@using Application.DTOs
+@using Domain.Entities.Role
 @model EditUserDto;
 
 @{
     Layout = "_AdminLayOut";
+
+    List<Role> ?Roles = ViewData["Roles"] as List<Role>;
 }
 
 
@@ -83,16 +86,25 @@
             }
             else
             {
-                <img class="Img" id="image"  src="~/Images/@Model.UserAvatar">
+                <img class="Img" id="image" src="~/Images/@Model.UserAvatar">
             }
 
             <br></br>
 
-            <input type="file"  asp-for="UserAvatarFormFile"></>
+            <input type="file" asp-for="UserAvatarFormFile"></>
 
             <br></br>
 
-            <button type="submit" >Submit</button>
+            @if(Roles != null){
+            @foreach (var item in Roles)
+            {
+                <label>@item.RoleUniqueName</label>
+                <input type="checkbox" id="@item.Id" name="SelectedRoles" />
+                <br></br>
+            }
+            }
+
+            <button type="submit">Submit</button>
 
         </form>
     </div>
@@ -107,8 +119,7 @@
 
     const image = document.getElementById('image');
 
-    fileInput.addEventListener('change', function()
-    {
+    fileInput.addEventListener('change', function() {
 
         const file = fileInput.files[0];
         const reader = new FileReader();

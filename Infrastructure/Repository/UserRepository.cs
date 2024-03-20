@@ -153,13 +153,19 @@ public class UserRepository : IUserRepository
     }
     #endregion
 
+
+    #region EditUser
     public async Task<bool> EditUserDto(User user)
     {
 
-              _Context.Users.Update(user);
+        _Context.Users.Update(user);
         await _Context.SaveChangesAsync();
         return true;
 
     }
 
+    #endregion
+
+
+    
 }
